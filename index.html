@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Кейсы</title>
+    <meta charset="utf-8">
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <style>
+        body {
+            font-family: Arial;
+            text-align: center;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        button {
+            padding: 10px 15px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>✨ Твой WebApp для кейсов</h1>
+    <p>Здесь будет крутой функционал!</p>
+
+    <button onclick="Telegram.WebApp.close()">Закрыть</button>
+
+    <script>
+        // Доступ к данным пользователя из Telegram
+        const tg = window.Telegram.WebApp;
+        tg.expand(); // Раскрываем на весь экран
+
+        // Пример отправки данных в бота
+        function sendData() {
+            tg.sendData(JSON.stringify({
+                case_type: "premium",
+                user_id: tg.initDataUnsafe.user.id
+            }));
+        }
+    </script>
+</body>
+</html>
