@@ -1,44 +1,69 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
-    <title>Кейсы</title>
-    <meta charset="utf-8">
-    <script src="https://telegram.org/js/telegram-web-app.js"></script>
-    <style>
-        body {
-            font-family: Arial;
-            text-align: center;
-            padding: 20px;
-            background-color: #f5f5f5;
-        }
-        button {
-            padding: 10px 15px;
-            background: #007bff;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Star Cases — Кейсы с подарками</title>
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Rubik', sans-serif;
+    }
+    body {
+      background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+      padding: 20px;
+    }
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 10px;
+    }
+    p {
+      font-size: 1.2rem;
+      max-width: 500px;
+      margin-bottom: 30px;
+      color: #ccc;
+    }
+    .btn {
+      padding: 15px 30px;
+      margin: 10px;
+      border: none;
+      border-radius: 10px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      background: #ff4d4d;
+      color: white;
+      transition: 0.3s;
+    }
+    .btn:hover {
+      background: #e03e3e;
+    }
+    footer {
+      position: absolute;
+      bottom: 10px;
+      font-size: 0.9rem;
+      color: #777;
+    }
+  </style>
 </head>
 <body>
-    <h1>✨ Твой WebApp для кейсов</h1>
-    <p>Здесь будет крутой функционал!</p>
+  <h1>Star Cases</h1>
+  <p>🎁 Открывай кейсы, получай призы и участвуй в розыгрышах прямо в Telegram!</p>
+  <a class="btn" href="https://t.me/Star_Cases_Bot?start=webapp">🚀 Начать игру</a>
+  <a class="btn" href="https://t.me/Star_Cases">💬 Сообщество</a>
+  <a class="btn" href="https://t.me/yarrrd">🛠 Поддержка</a>
 
-    <button onclick="Telegram.WebApp.close()">Закрыть</button>
-
-    <script>
-        // Доступ к данным пользователя из Telegram
-        const tg = window.Telegram.WebApp;
-        tg.expand(); // Раскрываем на весь экран
-
-        // Пример отправки данных в бота
-        function sendData() {
-            tg.sendData(JSON.stringify({
-                case_type: "premium",
-                user_id: tg.initDataUnsafe.user.id
-            }));
-        }
-    </script>
+  <footer>
+    © 2025 Star Cases. Все права защищены.
+  </footer>
 </body>
 </html>
