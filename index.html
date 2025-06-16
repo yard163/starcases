@@ -1,70 +1,71 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Star Cases — Кейсы с подарками</title>
-  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;600;800&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Telegram WebApp</title>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: 'Rubik', sans-serif;
-    }
     body {
-      background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+      background-color: #121212;
       color: white;
+      font-family: sans-serif;
+      margin: 0;
+      padding: 20px;
+    }
+
+    #main-page {
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      height: 100vh;
-      text-align: center;
-      padding: 20px;
+      gap: 16px;
     }
-    h1 {
-      font-size: 3rem;
-      margin-bottom: 10px;
+
+    #user-avatar {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid #555;
     }
-    p {
-      font-size: 1.2rem;
-      max-width: 500px;
-      margin-bottom: 30px;
-      color: #ccc;
-    }
-    .btn {
-      text-decoration: none;
-      padding: 15px 30px;
-      margin: 10px;
-      border: none;
-      border-radius: 10px;
-      font-size: 1.1rem;
-      cursor: pointer;
-      background: #ff4d4d;
-      color: white;
-      transition: 0.3s;
-    }
-    .btn:hover {
-      background: #e03e3e;
-    }
-    footer {
-      position: absolute;
-      bottom: 10px;
-      font-size: 0.9rem;
-      color: #777;
+
+    #user-name {
+      font-size: 20px;
+      font-weight: bold;
     }
   </style>
 </head>
 <body>
-  <h1>Star Cases</h1>
-  <p>🎁 Открывай кейсы, получай призы и участвуй в розыгрышах прямо в Telegram!</p>
-  <a class="btn" href="https://t.me/Star_Cases_Bot?start=webapp">🚀 Начать игру</a>
-  <a class="btn" href="https://t.me/Star_Cases">💬 Сообщество</a>
-  <a class="btn" href="https://t.me/yarrrd">🛠 Поддержка</a>
+  <div id="main-page">
+    <h2>Главная</h2>
+    <img id="user-avatar" src="" alt="Avatar">
+    <p id="user-name">Загрузка...</p>
+  </div>
 
-  <footer>
-    © 2025 Star Cases. Все права защищены.
-  </footer>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const tg = window.Telegram.WebApp;
+      const user = tg.initDataUnsafe.user;
+
+      if (user) {
+        const avatar = document.getElementById('user-avatar');
+        const name = document.getElementById('user-name');
+
+        // Пробуем использовать photo_url (если Telegram его предоставляет)
+        if (user.photo_url) {
+          avatar.src = user.photo_url;
+        } else if (user.username) {
+          avatar.src = `https://t.me/i/userpic/320/${user.username}.jpg`;
+        } else {
+          avatar.alt = "Аватар недоступен";
+        }
+
+        name.textContent = `${user.first_name || ''} ${user.last_name || ''}`;
+      } else {
+        document.getElementById('user-name').textContent = 'Пользователь не найден';
+      }
+    });
+  </script>
 </body>
 </html>
