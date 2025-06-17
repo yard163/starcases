@@ -15,18 +15,6 @@ function initTelegramApp() {
   });
 }
 
-// В начале script.js
-if (window.Telegram?.WebApp) {
-  Telegram.WebApp.ready();
-  
-  // Просто добавляем параметр к URL без перезагрузки
-  if (!window.location.search.includes('t=')) {
-    const newUrl = new URL(window.location.href);
-    newUrl.searchParams.set('t', Date.now());
-    window.history.replaceState({}, '', newUrl);
-  }
-}
-
 // Основная функция
 document.addEventListener('DOMContentLoaded', () => {
   // 1. Инициализируем Telegram
