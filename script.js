@@ -15,6 +15,12 @@ function initTelegramApp() {
   });
 }
 
+if (window.Telegram?.WebApp && !sessionStorage.getItem('cacheBypassed')) {
+  sessionStorage.setItem('cacheBypassed', 'true');
+  window.location.search += (window.location.search ? '&' : '?') + 't=' + Date.now();
+  return; // Прекращаем выполнение до перезагрузки
+}
+
 // Основная функция
 document.addEventListener('DOMContentLoaded', () => {
   // 1. Инициализируем Telegram
