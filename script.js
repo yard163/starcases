@@ -1,8 +1,19 @@
 document.addEventListener('DOMContentLoaded', function () {
+
+    // Проверяем, запущено ли в Telegram WebApp
+  const tg = window.Telegram?.WebApp; // Опциональная цепочка (?.), чтобы не было ошибки
+  
+  // Если Telegram WebApp доступен, инициализируем
+  if (tg) {
+    tg.expand(); // Раскрываем на весь экран
+    tg.enableClosingConfirmation(); // Включаем подтверждение выхода
+  }
+  
   const buttons = document.querySelectorAll('.nav-button');
   const profileScreen = document.getElementById('profile-screen');
   const avatar = document.getElementById('avatar');
   const uploadInput = document.getElementById('upload-avatar');
+
 
   // Навигация
   buttons.forEach((button, index) => {
