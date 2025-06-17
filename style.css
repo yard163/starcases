@@ -38,7 +38,7 @@ body {
   bottom: 0;
   left: 0;
   right: 0;
-  margin: 40px 40px;
+  margin: 20px 20px;
   width: auto;
   background-color: #1a1a1a;
   padding: 5px 5px;
@@ -64,14 +64,14 @@ body {
   border-radius: 16px;
   color: white;
   cursor: pointer;
-  padding: 70px 0;
+  padding: 40px 0;
   gap: 10px; 
 }
 
 .nav-button span {
   font-family: 'SF Pro Text', sans-serif;
 
-  font-size: 32px; 
+  font-size: 16px; 
   font-weight: 400;
   line-height: 1.2;
 
@@ -83,8 +83,8 @@ body {
 }
 
 .nav-button .icon {
-  width: 48px;
-  height: 48px;
+  width: 12px;
+  height: 12px;
 }
 
 .nav-button:first-child {
@@ -104,7 +104,7 @@ body {
   top: 105px;
   left: 0;
   right: 0;
-  bottom: 550px; /* оставим место под нижнюю панель */
+  bottom: auto;
   background-color: #121212;
   padding-top: 60px;
   padding-bottom: 20px;
