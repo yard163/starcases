@@ -56,15 +56,12 @@ body {
   align-items: center;
   justify-content: center;
 
-  width: 100%;
-  max-width: 500;
   height: 64px;
   background-color: #1a1a1a;
   border: none;
   border-radius: 16px;
   color: white;
   cursor: pointer;
-  padding: 40px 0;
   gap: 10px; 
 }
 
@@ -104,8 +101,8 @@ body {
   top: 105px;
   left: 0;
   right: 0;
-  bottom: auto;
-  background-color: #c40c0c;
+  bottom: 700;
+  background-color: #121212;
   padding-top: 60px;
   padding-bottom: 20px;
   text-align: center;
