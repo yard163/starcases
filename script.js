@@ -1,54 +1,54 @@
-document.addEventListener('DOMContentLoaded', function () {
-
-    // Проверяем, запущено ли в Telegram WebApp
-  const tg = window.Telegram?.WebApp; // Опциональная цепочка (?.), чтобы не было ошибки
+document.addEventListener('DOMContentLoaded', function() {
   
-  // Если Telegram WebApp доступен, инициализируем
-  if (tg) {
-    tg.expand(); // Раскрываем на весь экран
-    tg.enableClosingConfirmation(); // Включаем подтверждение выхода
+  // ===== 1. Инициализация Telegram WebApp =====
+  function initTelegramApp() {
+    if (typeof Telegram !== 'undefined' && Telegram.WebApp) {
+      const tg = Telegram.WebApp;
+      tg.expand(); // Раскрыть на весь экран
+      tg.enableClosingConfirmation(); // Подтверждение при закрытии
+      console.log('Telegram WebApp инициализирован!');
+    }
   }
-  
+
+  // Пробуем инициализировать (с задержкой для надёжности)
+  initTelegramApp();
+  setTimeout(initTelegramApp, 500); // Дополнительная проверка через 0.5 сек
+
+  // ===== 2. Навигация и аватар =====
   const buttons = document.querySelectorAll('.nav-button');
   const profileScreen = document.getElementById('profile-screen');
   const avatar = document.getElementById('avatar');
   const uploadInput = document.getElementById('upload-avatar');
 
-
-  // Навигация
+  // Обработчики кнопок
   buttons.forEach((button, index) => {
     button.addEventListener('click', () => {
       buttons.forEach(btn => btn.classList.remove('active'));
       button.classList.add('active');
 
       // Показать/скрыть профиль
-      if (index === 1) {
-        profileScreen.style.display = 'block';
-      } else {
-        profileScreen.style.display = 'none';
-      }
+      profileScreen.style.display = index === 1 ? 'block' : 'none';
     });
   });
 
-  // Подгружаем сохранённую аватарку
-  const savedAvatar = localStorage.getItem('customAvatar');
-  if (savedAvatar && avatar) {
-    avatar.src = savedAvatar;
-  }
-
-  // Обработка загрузки новой аватарки
-  if (uploadInput) {
-    uploadInput.addEventListener('change', function (e) {
+  // Загрузка аватарки
+  if (uploadInput && avatar) {
+    uploadInput.addEventListener('change', function(e) {
       const file = e.target.files[0];
       if (!file) return;
 
       const reader = new FileReader();
-      reader.onload = function (event) {
-        const base64 = event.target.result;
-        avatar.src = base64;
-        localStorage.setItem('customAvatar', base64);
+      reader.onload = (event) => {
+        avatar.src = event.target.result;
+        localStorage.setItem('customAvatar', event.target.result);
       };
       reader.readAsDataURL(file);
     });
+  }
+
+  // Восстановление аватарки из localStorage
+  const savedAvatar = localStorage.getItem('customAvatar');
+  if (savedAvatar && avatar) {
+    avatar.src = savedAvatar;
   }
 });

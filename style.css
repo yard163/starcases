@@ -51,7 +51,8 @@ body {
   align-items: center;
   justify-content: center;
 
-  width: 490px;
+  width: 100%;
+  max-width: 500;
   height: 64px;
   background-color: #1a1a1a;
   border: none;
@@ -132,6 +133,11 @@ body {
   cursor: pointer;
   font-size: 14px;
   transition: background-color 0.2s ease;
+}
+
+.avatar-label img:hover {
+  opacity: 0.4;
+  transition: opacity 0.2s ease;
 }
 
 #upload-avatar:hover {
