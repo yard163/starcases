@@ -15,10 +15,16 @@ function initTelegramApp() {
   });
 }
 
-if (window.Telegram?.WebApp && !sessionStorage.getItem('cacheBypassed')) {
-  sessionStorage.setItem('cacheBypassed', 'true');
-  window.location.search += (window.location.search ? '&' : '?') + 't=' + Date.now();
-  return; // Прекращаем выполнение до перезагрузки
+// В начале script.js
+if (window.Telegram?.WebApp) {
+  Telegram.WebApp.ready();
+  
+  // Просто добавляем параметр к URL без перезагрузки
+  if (!window.location.search.includes('t=')) {
+    const newUrl = new URL(window.location.href);
+    newUrl.searchParams.set('t', Date.now());
+    window.history.replaceState({}, '', newUrl);
+  }
 }
 
 // Основная функция
