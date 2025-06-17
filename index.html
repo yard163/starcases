@@ -12,7 +12,27 @@
   <link rel="stylesheet" href="style.css">
 </head>
 
+<!-- Запрет кеширования на уровне сервера -->
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+
+<!-- Динамическое обновление -->
+<script>
+  if (window.Telegram?.WebApp) {
+    const tg = Telegram.WebApp;
+    tg.ready();
+    
+    // Жёсткий сброс кеша при каждом открытии
+    const url = new URL(window.location.href);
+    url.searchParams.set('force', Date.now());
+    
+    // Если URL уже содержит параметр - не перезагружаем
+    if (!window.location.search.includes('force')) {
+      window.location.href = url.toString();
+    }
+  }
+</script>
 
 <body>
 
