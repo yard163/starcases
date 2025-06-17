@@ -1,71 +1,37 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Telegram WebApp</title>
-  <script src="https://telegram.org/js/telegram-web-app.js"></script>
-  <style>
-    body {
-      background-color: #121212;
-      color: white;
-      font-family: sans-serif;
-      margin: 0;
-      padding: 20px;
-    }
-
-    #main-page {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 16px;
-    }
-
-    #user-avatar {
-      width: 100px;
-      height: 100px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 2px solid #555;
-    }
-
-    #user-name {
-      font-size: 20px;
-      font-weight: bold;
-    }
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Навигация</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div id="main-page">
-    <h2>Главная</h2>
-    <img id="user-avatar" src="" alt="Avatar">
-    <p id="user-name">Загрузка...</p>
-  </div>
 
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      const tg = window.Telegram.WebApp;
-      const user = tg.initDataUnsafe.user;
+<div class="bottom-nav">
+  <button class="nav-button active">
+    <img src="icons/home.svg" alt="home" class="icon" />
+    <span>Главная</span>
+  </button>
+  <button class="nav-button">
+    <img src="icons/user.svg" alt="profile" class="icon" />
+    <span>Профиль</span>
+  </button>
+</div>
 
-      if (user) {
-        const avatar = document.getElementById('user-avatar');
-        const name = document.getElementById('user-name');
+<script src="script.js" defer></script>
 
-        // Пробуем использовать photo_url (если Telegram его предоставляет)
-        if (user.photo_url) {
-          avatar.src = user.photo_url;
-        } else if (user.username) {
-          avatar.src = `https://t.me/i/userpic/320/${user.username}.jpg`;
-        } else {
-          avatar.alt = "Аватар недоступен";
-        }
+<div id="profile-screen" style="display: none; text-align: center; padding: 20px;">
+<!--<h2>Профиль</h2>-->
 
-        name.textContent = `${user.first_name || ''} ${user.last_name || ''}`;
-      } else {
-        document.getElementById('user-name').textContent = 'Пользователь не найден';
-      }
-    });
-  </script>
+<label for="upload-avatar" class="avatar-label">
+  <img id="avatar" src="default-avatar.png" width="100" height="100" style="border-radius: 50%; object-fit: cover; cursor: pointer;" />
+  </label>
+
+  <br><br>
+  <input type="file" id="upload-avatar" accept="image/*" style="display: none;" />
+</div>
+
 </body>
 </html>
